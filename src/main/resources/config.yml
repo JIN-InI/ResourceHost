@@ -1,0 +1,6 @@
+# Address that this server
+# If blank, the IP address will be used instead.
+address:
+port: 8080
+# Define resource packs to be applied by default
+default:
