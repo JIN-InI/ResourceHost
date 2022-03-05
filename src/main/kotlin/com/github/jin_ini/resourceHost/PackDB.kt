@@ -11,7 +11,7 @@ object PackDB {
 
     fun loadPacks() {
         if (!dataFolder.exists()) Files.createDirectories(Paths.get(dataFolder.absolutePath))
-        dataFolder.listFiles()?.filter { it.extension == "zip" }?.map { packsData.put(it.name, Paths.get(it.path)) }
+        dataFolder.listFiles()?.filter { it.extension == "zip" }?.forEach{ packsData[it.name] = Paths.get(it.path) }
         if(packsData.isEmpty()) ResourceHost.INSTANCE.logger.info("Pack does not exist")
     }
 
