@@ -1,4 +1,4 @@
-name: ResourceHoster
+name: ResourceHost
 main: com.github.jin_ini.resourceHost.ResourceHost
 load: STARTUP
 version: 1.18.2
