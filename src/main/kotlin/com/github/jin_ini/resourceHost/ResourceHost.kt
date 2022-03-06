@@ -13,7 +13,7 @@ class ResourceHost : JavaPlugin() {
     private lateinit var server: NettyApplicationEngine
     lateinit var defaultPackName: String
     lateinit var address: String
-    private var port = 8080
+    var port = 8080
 
     companion object {
         lateinit var INSTANCE: ResourceHost
@@ -22,6 +22,7 @@ class ResourceHost : JavaPlugin() {
     override fun onEnable() {
         INSTANCE = this
         loadConfig()
+        PackDB.dataFolder = dataFolder
         PackDB.loadPacks()
 
         server = setupServer(port)
@@ -35,7 +36,7 @@ class ResourceHost : JavaPlugin() {
         saveDefaultConfig()
         address = config.getString("address") ?: Bukkit.getIp()
         port = config.getInt("port")
-        defaultPackName = config.getString("default") ?: ""
+        defaultPackName = config.getString("default")?.also { logger.info("Default is $it") } ?: ""
     }
 
     private fun setupServer(port: Int): NettyApplicationEngine {
