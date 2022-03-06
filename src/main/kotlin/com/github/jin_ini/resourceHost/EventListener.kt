@@ -17,7 +17,7 @@ class EventListener : Listener {
         object : BukkitRunnable() {
             override fun run() {
                 PackDB.getFile(defaultPackName)?.calcSHA1()?.let {
-                    event.player.setResourcePack("http://$address:$port/?name=$defaultPackName", it, true)
+                    event.player.setResourcePack("http://$address:$port/?name=$defaultPackName", it)
                 }
             }
         }.runTaskLater(ResourceHost.INSTANCE, 1)
