@@ -17,8 +17,8 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
     compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
-    // Ktor
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("commons-codec:commons-codec:1.15")
 }
 
 java {
