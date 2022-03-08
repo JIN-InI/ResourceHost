@@ -17,6 +17,14 @@ object PackDB {
         if (packsData.isEmpty()) ResourceHost.INSTANCE.logger.info("Pack does not exist")
     }
 
+    fun getAddress(name: String): String {
+        return "https://${ResourceHost.INSTANCE.address}:${ResourceHost.INSTANCE.port}/?name=$name"
+    }
+
+    fun getPacksDataNameSet(): Set<String> {
+        return packsData.keys
+    }
+
     fun getFile(name: String): File? {
         return packsData[name]?.toFile()
     }

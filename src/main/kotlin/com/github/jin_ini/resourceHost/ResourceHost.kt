@@ -25,9 +25,10 @@ class ResourceHost : JavaPlugin() {
         PackDB.dataFolder = dataFolder
         PackDB.loadPacks()
 
-        server = setupServer(port)
+        server = setupKtorServer(port)
         server.start()
-        logger.info("Internal Server (Ktor powered) is enable")
+        getCommand("resourcehost")?.setExecutor(CommandClass(this))
+        logger.info("Internal server (Ktor powered) is enable")
 
         getServer().pluginManager.registerEvents(EventListener(), this)
     }
@@ -39,7 +40,7 @@ class ResourceHost : JavaPlugin() {
         defaultPackName = config.getString("default")?.also { logger.info("Default is $it") } ?: ""
     }
 
-    private fun setupServer(port: Int): NettyApplicationEngine {
+    private fun setupKtorServer(port: Int): NettyApplicationEngine {
         return embeddedServer(Netty, port) {
             routing {
                 get("/") {

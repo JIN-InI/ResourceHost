@@ -10,14 +10,12 @@ class EventListener : Listener {
 
     @EventHandler
     fun onJoin(event: PlayerJoinEvent) {
-        val address = ResourceHost.INSTANCE.address
-        val port = ResourceHost.INSTANCE.port
         val defaultPackName = ResourceHost.INSTANCE.defaultPackName
 
         PackDB.getFile(defaultPackName)?.calcSHA1()?.let {
             object : BukkitRunnable() {
                 override fun run() {
-                    event.player.setResourcePack("http://$address:$port/?name=$defaultPackName", it)
+                    event.player.setResourcePack(PackDB.getAddress(defaultPackName), it)
                 }
             }.runTaskLater(ResourceHost.INSTANCE, 1)
             ResourceHost.INSTANCE.logger.info("$defaultPackName applied to ${event.player.name}")

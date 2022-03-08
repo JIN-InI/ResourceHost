@@ -4,3 +4,7 @@ load: STARTUP
 version: 1.18.2
 api-version: 1.18
 prefix: "Resource Host"
+commands:
+  resourcehost:
+    aliases: rh
+    description: Please type /rh help
